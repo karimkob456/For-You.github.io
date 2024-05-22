@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Girlie Surprise</title>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #ffe6f2; /* light pink background */
+        position: relative;
+        overflow: hidden;
+        background-image: url('https://cdn.pixabay.com/photo/2016/11/29/05/51/beautiful-1867093_960_720.jpg');
+        background-repeat: repeat;
+    }
+    #container {
+        text-align: center;
+        position: relative;
+        z-index: 1;
+    }
+    #dialogue {
+        background-color: #fff; /* white background */
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 20px;
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2); /* soft shadow */
+    }
+    h1 {
+        color: #ff99cc; /* pink heading */
+        margin-bottom: 20px;
+        font-size: 24px;
+    }
+    p {
+        color: #666; /* dark gray text */
+        margin-bottom: 10px;
+    }
+    button {
+        background-color: #ff99cc; /* pink button background */
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        margin: 5px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    button:hover {
+        background-color: #ff66b3; /* darker pink on hover */
+    }
+    .corner {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        background-color: #ff99cc; /* pink corner */
+        z-index: 0;
+    }
+    .corner-top-left {
+        top: -50px;
+        left: -50px;
+        transform: rotate(45deg);
+        background-image: url('https://cdn.pixabay.com/photo/2016/11/29/05/51/beautiful-1867093_960_720.jpg');
+        background-size: cover;
+    }
+    .corner-top-right {
+        top: -50px;
+        right: -50px;
+        transform: rotate(45deg);
+        background-image: url('https://cdn.pixabay.com/photo/2016/11/29/05/51/beautiful-1867093_960_720.jpg');
+        background-size: cover;
+    }
+    .corner-bottom-left {
+        bottom: -50px;
+        left: -50px;
+        transform: rotate(45deg);
+        background-image: url('https://cdn.pixabay.com/photo/2016/11/29/05/51/beautiful-1867093_960_720.jpg');
+        background-size: cover;
+    }
+    .corner-bottom-right {
+        bottom: -50px;
+        right: -50px;
+        transform: rotate(45deg);
+        background-image: url('https://cdn.pixabay.com/photo/2016/11/29/05/51/beautiful-1867093_960_720.jpg');
+        background-size: cover;
+    }
+    .correct {
+        color: #66cc66; /* green text */
+    }
+    .incorrect {
+        color: #ff6666; /* red text */
+    }
+    .smiley {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        background-color: transparent;
+        z-index: 0;
+        animation: smiley-animation 3s infinite;
+    }
+    @keyframes smiley-animation {
+        0% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-20px);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
+    .letter-container {
+        display: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 400px;
+        height: 400px;
+        background-color: #ff99cc; /* pink background */
+        border-radius: 10px;
+        z-index: 2;
+        overflow: hidden;
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2); /* soft shadow */
+        cursor: pointer;
+    }
+    .letter {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90%;
+        height: 90%;
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        overflow-y: auto;
+    }
+    .letter-content {
+        color: #333; /* dark text */
+        line-height: 1.6;
+    }
+    .letter-content em {
+        color: #ff99cc; /* pink */
+        font-style: normal;
+    }
+</style>
+</head>
+<body>
+<div class="corner corner-top-left"></div>
+<div class="corner corner-top-right"></div>
+<div class="corner corner-bottom-left"></div>
+<div class="corner corner-bottom-right"></div>
+<div id="container">
+    <div id="dialogue">
+        <h1>HELLO PRINCESS! YOU ARE SO BEAUTIFUL ❤️</h1>
+        <h2>Here is a little game for you ❤️</h2>
+        <p id="question"><em>What's the day we met?</em></p>
+        <button onclick="checkAnswer('Jan 30')">Jan 30</button>
+        <button onclick="checkAnswer('Jan 29')">Jan 29</button>
+        <button onclick="checkAnswer('Oct 20')">Oct 20</button>
+        <button onclick="checkAnswer('June 18')">June 18</button>
+    </div>
+</div>
+
+<div class="smiley" style="top: 5%; left: 5%;">😊</div>
+<div class="smiley" style="top: 25%; left: 95%;">😄</div>
+<div class="smiley" style="top: 65%; left: 75%;">😍</div>
+<div class="smiley" style="top: 85%; left: 35%;">😘</div>
+<div class="smiley" style="top: 15%; left: 55%;">😀</div>
+<div class="smiley" style="top: 45%; left: 85%;">😃</div>
+<div class="smiley" style="top: 75%; left: 25%;">😉</div>
+<div class="smiley" style="top: 35%; left: 35%;">😋</div>
+<div class="smiley" style="top: 55%; left: 75%;">😇</div>
+<div class="smiley" style="top: 85%; left: 55%;">🥰</div>
+<div class="smiley" style="top: 15%; left: 35%;">😻</div>
+<div class="smiley" style="top: 35%; left: 75%;">😹</div>
+<div class="smiley" style="top: 55%; left: 35%;">😸</div>
+<div class="smiley" style="top: 75%; left: 75%;">😺</div>
+<div class="smiley" style="top: 5%; left: 55%;">😽</div>
+<div class="smiley" style="top: 25%; left: 85%;">😾</div>
+<div class="smiley" style="top: 45%; left: 15%;">😿</div>
+<div class="smiley" style="top: 65%; left: 55%;">🙀</div>
+<div class="smiley" style="top: 85%; left: 5%;">😹</div>
+<div class="smiley" style="top: 5%; left: 85%;">😻</div>
+<div class="smiley" style="top: 25%; left: 45%;">😋</div>
+<div class="smiley" style="top: 45%; left: 75%;">😸</div>
+<div class="smiley" style="top: 65%; left: 15%;">😄</div>
+<div class="smiley" style="top: 85%; left: 55%;">😍</div>
+
+<div class="letter-container" onclick="expandLetter()">
+    <div class="letter">
+        <div class="letter-content">
+            <p><em>In the tapestry of time, a day stands out, June's first, when beauty came about..her face that makes me blush 🫣 Her face, a portrait of grace untold, With eyes of brown, a sight to behold..these eyes warm and deep hold such magic that makes my heart leap A heart so kind ❤️, a soul so pure 🤍 In her presence, my heart feels secure.. through challenges she faces, she perseveres, With a smile, a smile so bright like the sun ( I Love it ), I'm glad here looking at the moon and be proud for every small step its doing.. Proudly..I proclaim my love so deep For the girl who makes my heart leap. On this day, a miracle was born, a wonderful birthday..Happy birthday Ya Hayati.🎂</em></p>
+        </div>
+    </div>
+</div>
+
+<script>
+    var clickedAnswers = [];
+
+    function checkAnswer(answer) {
+        if (answer === 'Jan 30') {
+            document.getElementById('question').innerHTML = "<span class='correct'>YAY</span>";
+            setTimeout(changeSecondQuestion, 2000);
+        } else {
+            document.getElementById('question').innerHTML = "<span class='incorrect'>OOPS, TRY AGAIN🎀</span>";
+        }
+    }
+
+    function changeSecondQuestion() {
+        document.getElementById('question').innerHTML = "<em>What's the name of the romance anime that we watched together? 🤔</em>";
+        var answers = ["Romantic killer", "Moboroshi", "A whisker Away", "A silent voice"];
+        document.querySelectorAll('#dialogue button').forEach(function(button, index) {
+            button.innerText = answers[index];
+            button.setAttribute('onclick', "checkAnswerAnime(this.innerText)");
+        });
+    }
+
+    function checkAnswerAnime(answer) {
+        if (answer === 'Moboroshi') {
+            document.getElementById('question').innerHTML = "<span class='correct'>YAY</span>";
+            setTimeout(changeThirdQuestion, 2000);
+        } else {
+            document.getElementById('question').innerHTML = "<span class='incorrect'>OOPS, TRY AGAIN🎀</span>";
+        }
+    }
+
+    function changeThirdQuestion() {
+        document.getElementById('question').innerHTML = "<em>What's the most beautiful thing in the world? 🤔</em>";
+        var answers = ["Your eyes", "YOUUUR EYEEESS", "Nothing", "YOUUUUR BROWN EYEEES 🥰"];
+        document.querySelectorAll('#dialogue button').forEach(function(button, index) {
+            button.innerText = answers[index];
+            button.setAttribute('onclick', "checkAnswerLike(this.innerText)");
+        });
+    }
+
+    function checkAnswerLike(answer) {
+        if (answer === 'YOUUUUR BROWN EYEEES 🥰') {
+            document.getElementById('question').innerHTML = "<span class='correct'>YAY</span>";
+            setTimeout(changeFourthQuestion, 2000);
+        } else {
+            document.getElementById('question').innerHTML = "<span class='incorrect'>OOPS, TRY AGAIN🎀</span>";
+        }
+    }
+
+    function changeFourthQuestion() {
+        document.getElementById('question').innerHTML = "<em>What's my favorite color now? 🤔</em>";
+        var answers = ["Yellow", "Red", "Orange", "Green 💚"];
+        document.querySelectorAll('#dialogue button').forEach(function(button, index) {
+            button.innerText = answers[index];
+            button.setAttribute('onclick', "checkAnswerColor(this.innerText)");
+        });
+    }
+
+    function checkAnswerColor(answer) {
+        if (answer === 'Green 💚') {
+            document.getElementById('question').innerHTML = "<span class='correct'>YAY</span>";
+            setTimeout(changeFifthQuestion, 2000);
+        } else {
+            document.getElementById('question').innerHTML = "<span class='incorrect'>OOPS, TRY AGAIN🎀</span>";
+        }
+    }
+
+    function changeFifthQuestion() {
+        document.getElementById('question').innerHTML = "<em>What do I like to call you? 🤔🤭</em>";
+        var answers = ["3yooni", "Ya qamar", "Omri", "Hayati"];
+        document.querySelectorAll('#dialogue button').forEach(function(button, index) {
+            button.innerText = answers[index];
+            button.setAttribute('onclick', "checkAnswerNickname(this.innerText)");
+        });
+    }
+
+    function checkAnswerNickname(answer) {
+        if (answer === 'ALL OF THEM ❤️') {
+            document.getElementById('container').style.display = 'none';
+            showLetter();
+        } else {
+            clickedAnswers.push(answer);
+            var allAnswers = ["3yooni", "Ya qamar", "Omri", "Hayati"];
+            if (clickedAnswers.length === allAnswers.length) {
+                document.getElementById('question').innerHTML = "<em>What do I like to call you? 🤔🤭</em><br><button onclick='checkAnswerNickname(\"ALL OF THEM ❤️\")'>ALL OF THEM ❤️</button>";
+            }
+        }
+    }
+
+    function showLetter() {
+        document.querySelector('.letter-container').style.display = 'block';
+    }
+
+    function expandLetter() {
+        document.querySelector('.letter-container').classList.toggle('expanded');
+    }
+</script>
+</body>
+</html>
